@@ -1,0 +1,239 @@
+body {
+    font-family: Encode Sans;
+    font-weight: 350;
+    font-size: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+#parentNav .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    font-weight: 700;
+    font-size: .9rem;
+    letter-spacing: .1rem;
+    background-color: #00A83E !important;
+    box-shadow: 0px 5px 6px #00000030;
+    font-family: Encode Sans;
+    font-weight: 300;
+    font-size: 1em;
+}
+
+#parentNav .navbar-brand img {
+    height: 2rem;
+}
+
+#parentNav .navbar-nav li {
+    padding-right: .7rem;
+}
+
+#parentNav .navbar-dark .navbar-nav .nav-link {
+    color: white;
+    padding-top: .8rem;
+}
+
+    #parentNav .navbar-dark .navbar-nav .nav-link.active, #parentNav .navbar-dark .navbar-nav .nav-link:hover {
+        color: yellow;
+    }
+
+.container {
+    margin-top: 8%;
+}
+
+.filterBox {
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 5px 5px 6px grey;
+    padding: 12px;
+}
+
+h5 {
+    font-weight: normal;
+    margin-bottom: 30px;
+    color: #606060;
+    font-size: 1.10rem;
+}
+
+.upBt {
+    margin-bottom: 7px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.downBt {
+    margin-top: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.filterBox .border {
+    border-width: 2px;
+}
+
+.digitBox {
+    background-color: #00A83E;
+    font-weight: bold;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.btn-sm {
+    padding: 0.25rem 3.5rem;
+    border-radius: 1.5rem;
+}
+
+.postView {
+    border-style: solid;
+    border-color: #00A83E;
+    border-width: 1.6px;
+    padding: 7px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+
+    .postView h6 {
+        color: #606060;
+        font-weight: normal;
+    }
+
+    .postView hr {
+        color: #707070;
+    }
+
+.postDate {
+    color: #AEAEAE;
+    font-size: 0.8rem;
+}
+
+.postDescription {
+    color: #6C6B6B;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.postCategory {
+    color: #606060;
+    font-size: 0.8rem;
+}
+
+.button {
+    background-color: #ffffff;
+    border: none;
+    color: #00A83E;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0px 5px 6px #00000030;
+}
+
+.fa-undo {
+    cursor: pointer;
+}
+
+.nav-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    display: flex;
+    overflow-x: auto;
+}
+
+.nav__link {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #444444;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.1s ease-in-out;
+    text-decoration: none;
+}
+
+    .nav__link:hover {
+        background-color: #eeeeee;
+        text-decoration: none;
+        color: #00a83e;
+    }
+
+.nav__link--active {
+    width: 33%;
+    color: #00A83E;
+}
+
+.nav__icon {
+    font-size: 18px;
+}
+
+@media (min-width: 994px) {
+    #bottom-nav {
+        display: none;
+    }
+
+    #content-profile-picture {
+        display: none;
+    }
+}
+
+@media (max-width: 993px) {
+    #filterPanel {
+        display: none;
+    }
+
+    .container {
+        margin-top: 15%;
+        margin-bottom: 15%;
+    }
+}
+
+.modal {
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.9);
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-content {
+    border-style: solid;
+    border-color: #00A83E;
+    border-width: 3px;
+}

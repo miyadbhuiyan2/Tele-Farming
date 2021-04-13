@@ -1,0 +1,239 @@
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover{
+	text-decoration: none;
+	color: inherit;
+}
+
+.post_section {
+	border: 1px solid #00A83E;
+	border-radius: 15px;
+	margin: 1.5%;
+	height: 130px;
+}
+
+.view_button_area {
+	text-align: center;
+	margin-top: 5%;
+}
+
+.view_button {
+	color: #00A83E;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	border-radius: 50px;
+	width: 65%;
+	padding: 3% 0% 3% 0%;
+}
+
+.view_button p {
+	height: auto;
+	margin: auto 0;
+	font-family: Encode Sans;
+	font-size: 0.9em;
+	font-weight: 450;
+}
+
+.text {
+	font-family: Encode Sans;
+	font-size: 1em;
+	font-weight: 400;
+	padding-left: 3%;
+	
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.text h4 {
+	margin-bottom: 2%;
+}
+
+.text p {
+	font-family: Encode Sans;
+	font-size: 0.9em;
+	font-weight: 400;
+}
+
+.category_select_button {
+	border-radius: 20px;
+	font-family: Encode Sans;
+}
+
+.dropdown-menu {
+	background-color: #00A83E;
+	color: #fff;
+	font-family: Encode Sans;
+}
+
+.dropdown-menu a {
+	color: #fff;
+	font-family: Encode Sans;
+}
+
+.container {
+	margin-top: 5%;
+}
+
+
+.make_post{
+	background-color: #E9E9E9;
+	text-align: center;
+	padding: 3% 0% 3% 0%;
+	
+	border-radius: 30px;
+	
+	font-family: Encode Sans;
+	font-size: 1em;
+	font-weight: 450;
+}
+
+.make_post p{
+	height: auto;
+	margin: auto 0;
+}
+
+.make_post btn{
+	border-style: none;
+	outline:none;
+	outline-style: none;
+}
+
+
+
+
+
+
+
+.add_image_btn{
+  background-color: #fff; 
+  border-radius: 20px;
+  color: #000;
+  font-family: Encode Sans;
+  font-weight: 380;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  display: block;
+}
+
+.add_image_p{
+  display: inline;
+}
+
+.add_image_img{
+  width:28px;
+  height:28px;
+}
+
+#title{
+  border:1px solid #00A83E;
+  font-family: Encode Sans;
+  padding: 15px;
+}
+
+#description{
+  border:1px solid #00A83E;
+  font-family: Encode Sans;
+  padding: 15px;
+}
+
+.file_name{
+  width: 17%;
+  height: 35px;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  margin-top:5px;
+  padding-left: 10px;
+}
+
+.file_name_p{
+  margin-top:6px;
+  font-family: Encode Sans;
+  display: inline;
+}
+
+.cross_image{
+  width: 40px;
+  height: 40px;
+  margin-top:2px;
+  display: inline;
+}
+
+.file_section {
+	width: 40%;
+}
+
+.submit {
+	text-align: center;
+	margin-top: 7%;
+}
+
+.submit_btn {
+	background-color: #00A83E;
+	color: #fff;
+	border-radius: 20px;
+	font-family: Encode Sans;
+	font-weight: 400;
+	font-size: 1em;
+	padding: 0.6% 5% 0.6% 5%;
+}
+
+
+.farmer_detail_input_line {
+	width: 97%;
+	height: 2px;
+	background-color: #00A83E;
+	margin-left: 2%;
+	margin-right: 5%;
+}
+
+.farmer_details_name {
+	padding-top: 1%;
+	text-align: center;
+	width: 100%;
+}
+
+.farmer_details_name input {
+	width: 50%;
+	border-radius: 20px;
+	margin: 0 auto;
+}
+
+.farmer_details_email {
+	padding-bottom: 0%;
+	text-align: center;
+	width: 100%;
+}
+
+.farmer_details_email input {
+	width: 50%;
+	border-radius: 20px;
+	margin: 0 auto;
+}
+
+.s_row {
+	text-align: center;
+}
+
+.specialist_response {
+	text-align: center;
+	width: 100%;
+	margin-top: 1%;
+}
+
+.specialist_response p {
+	font-family: Encode Sans;
+	font-size: 1.3em;
+	font-weight: 500;
+	color: #00A83E;
+}
+
+label{
+	color: #00A83E !important;
+	font-family: 'Encode Sans';
+	font-weight: 450;
+	font-size: 0.9em;
+}

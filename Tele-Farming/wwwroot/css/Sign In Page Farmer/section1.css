@@ -1,0 +1,68 @@
+.section_1 {
+	height: 600px;
+	background-color: #00A83E;
+	display: inline-block;
+	width: 50%;
+	float: left;
+	
+	padding-top: 20%;
+	border-radius: 20px 0px 0px 20px;
+}
+
+
+.form_section {
+	display: inline-block;
+	width: 100%;
+	
+	margin-top: 1%;
+	position: relative;
+	text-align: center;
+}
+
+.email_icon_img {
+	
+	width: 5%;
+	top: 17%;
+	left: 18%;
+	
+	position: absolute;
+}
+
+.password_icon_img{
+/*	width: 45%;*/
+	
+	width: 6%;
+
+	top: 13%;
+	left: 18%;
+
+	position: absolute;
+}
+
+/*
+.icon p {
+	height: auto;
+	margin: auto 0;
+}
+*/
+
+.input_section {
+	display: inline-block;
+	width: 100%;
+	border-radius: 30px;
+	outline-style: none;
+	border: none;
+	
+/*	padding: 1% 3% 2.8% 0%;*/
+	padding: 2% 2% 2% 13%;
+	
+	width: 70%;
+	
+	font-family: Encode Sans;
+	font-size: 1em;
+	font-weight: 350;
+	color: #606060;
+	
+	margin-bottom: -5px;
+	margin-left: -5px;
+}

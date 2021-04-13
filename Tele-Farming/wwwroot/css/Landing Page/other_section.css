@@ -1,0 +1,53 @@
+
+.other_account_section {
+	margin-bottom: 10%;
+}
+
+.content_card {
+	display:inline-block;
+	width: 40%;
+	height: auto;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	text-align: center;
+	justify-content: center;
+	
+	padding: 8% 2% 8% 2%;
+	border-radius: 0px 0px 20px 20px;
+	
+	margin-right: 0%;
+	margin-left: 7%;
+}
+
+.other_account_title {
+	font-family: Gloucester MT;
+	font-size: 3.1em;
+	margin-bottom: 5%;
+	text-align: center;
+}
+
+.content_card_image{
+	margin-bottom: 5%;
+}
+
+.content_card_image img{
+	width:60%;
+	height:60%;
+}
+
+.content_card_text{
+	margin-bottom: 5%;
+}
+
+.content_card_text h3{
+	font-family: Gloucester MT;
+	font-size: 2em;
+	margin-bottom: 5%;
+}
+
+.content_card_text p{
+	font-family: Encode Sans;
+	font-size: 1em;
+	margin-bottom: 5%;
+}
+

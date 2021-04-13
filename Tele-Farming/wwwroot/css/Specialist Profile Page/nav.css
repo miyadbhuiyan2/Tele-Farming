@@ -1,0 +1,30 @@
+#parentNav .navbar{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;    
+  font-weight:700;
+  font-size: .9rem;
+  letter-spacing:.1rem;
+  background-color: #00A83E !important;
+	
+	
+	font-family: Encode Sans;
+	font-weight: 300;
+	font-size: 1em;
+	
+}
+#parentNav .navbar-brand img{
+  height: 2rem;
+}
+#parentNav .navbar-nav li{
+  padding-right: .7rem;
+}
+#parentNav .navbar-dark .navbar-nav .nav-link{
+  color: white;
+  padding-top:.8rem;
+}
+#parentNav .navbar-dark .navbar-nav .nav-link.active,#parentNav .navbar-dark .navbar-nav .nav-link:hover {
+  color:orange;
+}

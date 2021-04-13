@@ -1,0 +1,149 @@
+body{
+	
+}
+
+.container{
+	margin-top: 5%;
+	height: 600px;
+}
+
+.part-1 {
+	/*	border: 1px solid #000;*/
+	height: 100%;
+	width: 50%;
+	display: inline-block;
+	background-image: url('../images/Select Account Type Page/image.jpg');
+	float: left;
+	border-radius: 20px 0px 0px 20px;
+}
+
+.part-2{
+/*	border: 1px solid #222;*/
+	height: 100%;
+	width: 50%;
+	display: inline-block;
+	float: right;
+	border: 2px solid #00A83E;
+	border-radius: 0px 20px 20px 0px;
+	border-style: solid solid solid none;
+}
+
+.text{
+	width: 50%; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+	color: #00A83E;
+	
+	margin-top: 10%;
+}
+
+.welcome_text, .tele_farming_text{
+	font-family: Encode Sans;
+	font-weight: 430;
+	font-size: 44px;
+}
+
+.to_text{
+	font-family: Encode Sans;
+	font-weight: 420;
+	font-size: 35px;
+}
+
+
+.select_account_type{
+	height: auto;
+    margin: 0 auto;
+	text-align: center;
+	border-radius: 20px;
+	width: 40%;
+	height: auto;
+	border: 1px solid #00A83E;
+	background-color: #00A83E;
+	color: #fff;
+	padding: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	
+	margin-top: 10px;
+}
+
+.select_account_type p {
+	height: auto;
+    margin: auto 0;
+}
+
+.triangle_image{
+	text-align: center;
+}
+
+.tele-farming_image{
+	object-fit: cover;
+}
+
+.account_choose{
+	width: 50%;
+	height: auto;
+    margin: 0 auto;
+	margin-top: 15px;
+}
+
+.farmer_button, .specialist_button, .agent_button {
+	background-color: #fff;
+	
+	border: 2px solid #00A83E;
+	border-radius: 50px;
+	
+	display: inline-block;
+	padding: 30px 12px 30px 12px;
+	
+	width: 32%;
+	height: auto;
+    margin: 0 auto;
+	text-align: center;
+	
+	color: #00A83E;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.farmer_button a, .specialist_button a, .agent_button a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.farmer_button:hover, .specialist_button:hover, .agent_button:hover {
+	background-color: #00A83E;
+	
+	border: 2px solid #00A83E;
+	border-radius: 50px;
+	
+	display: inline-block;
+	padding: 30px 12px 30px 12px;
+	
+	width: 32%;
+	height: auto;
+    margin: 0 auto;
+	text-align: center;
+	
+	color: #fff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.farmer_button p, .specialist_button p, .agent_button p {
+	height: auto;
+    margin: auto 0;
+	font-family: Encode Sans;
+}
+
+
+
+
+
+
+
+
+
+
+
+

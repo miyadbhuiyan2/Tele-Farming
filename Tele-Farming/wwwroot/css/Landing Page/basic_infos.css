@@ -1,0 +1,36 @@
+.basic_section{
+	margin-bottom: 5%;
+}
+
+.basic_text{
+	margin: 20% 0% 20% 0%;
+	text-align: left;
+}
+
+.basic_text h1{
+	font-family: Gloucester MT;
+	font-size: 3.1em;
+}
+
+.basic_text p{
+	font-family: Oxygen;
+	font-weight: 400;
+	font-size: 1.3em;
+}
+
+.basic_image{
+	text-align: right;
+	margin: 2% 0% 2% 0%;
+}
+
+.basic_image img{
+	height: 70%;
+	width: 70%;
+}
+.basic_text_reversed {
+	text-align: right;
+}
+
+.basic_image_reversed {
+	text-align: left;
+}

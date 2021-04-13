@@ -1,0 +1,58 @@
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+.intro_text{
+	margin: auto 0;
+	margin-top: 75%;
+
+	display: inline-block;
+}
+
+.intro_text h1{
+	font-family: Gloucester MT;
+	font-size: 3.1em;
+	color: #00A83E;
+}
+
+.intro_text p{
+	font-family: Encode Sans;
+	font-weight: 400;
+	font-size: 1.3em;
+}
+
+.intro_image{
+	text-align: left;
+}
+
+.intro_image img{
+	
+}
+.intro_text_col {
+	
+}
+
+.introduction_section {
+	margin-bottom: 10%;
+}
+
+.get_started_button_first {
+	border: 1px solid #00A83E;
+	background-color: #fff;
+	border-radius: 30px;
+	text-align: center;
+	width: 50%;
+}
+
+.get_started_button_first button {
+	color: #00A83E !important;
+	font-family: Encode Sans;
+	font-weight: 450;
+	font-size: 1em;
+}
