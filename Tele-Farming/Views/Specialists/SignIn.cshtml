@@ -1,0 +1,87 @@
+﻿@model Tele_Farming.Models.Specialist
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/Sign In Page Specialist/sign_in_page_farmer.css">
+    <link rel="stylesheet" href="~/css/Sign In Page Specialist/section1.css">
+    <link rel="stylesheet" href="~/css/Sign In Page Specialist/sign_in_button.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-1"></div>
+
+
+            <div class="col-lg-10">
+
+                <div class="section_1">
+                    <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form_section">
+                            @Html.ValidationSummary(true)
+                            <img src="~/images/Sign In Page Specialist/email-24px.svg" class="email_icon_img" alt="">
+                            <!--								<p>Password</p>-->
+                            <!--							<div class="input_section">-->
+                            <input type="text" class="input_section" placeholder="ইমেইল" asp-for="email">
+                            <span asp-validation-for="email" class="validation_span text-left"> </span>
+                            <!--							</div>-->
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign In Page Specialist/lock-24px.svg" class="password_icon_img" alt="">
+                            <!--								<p>Email</p>-->
+                            <!--							<div class="input_section">-->
+                            <input type="password" class="input_section" placeholder="পাসওয়ার্ড" asp-for="password">
+                            <span asp-validation-for="password" class="validation_span text-left"> </span>
+                            <!--							</div>-->
+                        </div>
+
+
+                        <div class="form_submit_section">
+                            <div class="have_an_account">
+                                <p>অ্যাকাউন্ট নেই?</p>
+                                <a asp-controller="Specialists" asp-action="SignUp"><p class="login_p">নিবন্ধন করুন</p></a>
+                            </div>
+                            <input type="submit" class="btn btn-success sign_up_button" value="সাইন ইন করুন">
+                            <div class="have_an_account">
+                                <a asp-controller="Specialists" asp-action="PasswordReset"><p class="login_p">পাসওয়ার্ড ভুলে গেছেন?</p></a>
+                            </div>
+                        </div>
+                        <!--
+                                                <div class="back_button">
+                                                    <a href="#"><img src="back.svg" alt=""></a>
+                                                </div>
+                        -->
+                    </form>
+                </div>
+
+
+                <div class="section_2">
+                    <img src="~/images/Sign In Page Specialist/filler_image_4.png" alt="">
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-1"></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

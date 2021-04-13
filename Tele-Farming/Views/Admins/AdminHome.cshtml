@@ -1,0 +1,225 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMIN</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/admin_home_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div id="main">
+                <span onclick="openNav()" class="fas fa-bars"></span>
+                <a class="navbar-brand" href="#"><img src="~/images/large.png"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> MIYAD</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/Admins/AdminHome/" class="menuItem active"><i class="fas fa-home"></i><span class="mr-2"></span> Home</a>
+        <a href="/Admins/AdminJoinRequests/" class="menuItem"><i class="fas fa-user-plus"></i><span class="mr-2"></span> Join Request</a>
+        <a href="/Admins/AdminComplains/" class="menuItem"><i class="fas fa-inbox"></i><span class="mr-2"></span> Complain</a>
+    </div>
+    <!--SideBar--->
+    <script>
+	function openNav() {
+  document.getElementById("mySidenav").style.width = "310px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+    </script>
+    <!--Home Panel-->
+    <div class="container">
+        <div class="row statsCards">
+            <div class="col-lg-6">
+                <div class="card earningsCard" onclick="location.href='admin_home_earning.html';">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-5 pt-4">
+                                <div class="card-title">1000</div>
+                                <div class="card-subtitle text-muted">Earnings</div>
+                            </div>
+                            <div class="col-5">
+                                <img src="~/images/earnings.svg" class="earningImg w-100">
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----------------------------specialist--------------------------->
+            <div class="col-lg-6">
+                <div class="row mb-1">
+                    <div class="col-lg-6">
+                        <div class="card mb-3" onclick="location.href='/Admins/AdminHomeDetailsPage/1';">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-5 pt-2">
+                                        <div class="card-title">@Model.SpecialistList.Count</div>
+                                        <div class="card-subtitle text-muted">Specialist</div>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="~/images/specialist.svg" class="earningImg w-100">
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----------------------------Farmer--------------------------->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card" onclick="location.href='/Admins/AdminHomeDetailsPage/2';">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-5 pt-2">
+                                        <div class="card-title">@Model.FarmerList.Count</div>
+                                        <div class="card-subtitle text-muted">Farmers</div>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="~/images/farmer.svg" class="earningImg w-100">
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------------------Agents---------------------------->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card" onclick="location.href='/Admins/AdminHomeDetailsPage/3';">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-5 pt-2">
+                                        <div class="card-title">@Model.AgentList.Count</div>
+                                        <div class="card-subtitle text-muted">Agents</div>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="~/images/manager.svg" class="w-100">
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----------------------------post--------------------------->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card" onclick="location.href='/Admins/AdminHomeDetailsPage/4';">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-5 pt-2">
+                                        <div class="card-title">@Model.PostList.Count</div>
+                                        <div class="card-subtitle text-muted">Posts</div>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="~/images/post.svg" class="w-100">
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!------------------------------------------------------->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h4 class="header-title mb-3">Recent Transactions</h4>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="fl-table">
+                                <thead>
+                                    <tr>
+                                        <th>Post ID</th>
+                                        <th>Specialist</th>
+                                        <th>Bkash No</th>
+                                        <th>Payment Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1234</td>
+                                        <td>Md. Rajib Hossain</td>
+                                        <td>0171345266</td>
+                                        <td>Completed</td>
+                                    </tr>
+                                <tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js"></script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

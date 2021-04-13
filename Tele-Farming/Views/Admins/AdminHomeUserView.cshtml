@@ -1,0 +1,209 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/cv_view_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div id="main">
+                <span onclick="openNav()" class="fas fa-bars"></span>
+                <a class="navbar-brand" href="#"><img src="~/images/large.png"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> MIYAD</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/Admins/AdminHome/" class="menuItem active"><i class="fas fa-home"></i><span class="mr-2"></span> Home</a>
+        <a href="/Admins/AdminJoinRequests/" class="menuItem"><i class="fas fa-user-plus"></i><span class="mr-2"></span> Join Request</a>
+        <a href="/Admins/AdminComplains/" class="menuItem"><i class="fas fa-inbox"></i><span class="mr-2"></span> Complain</a>
+    </div>
+    <!--End Side Navigation-->
+    <!--SideBar--->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "310px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row postView mt-5">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="postLabel">Name:</label>
+                                        <br>
+                                        <label class="postLabelValue">
+                                        @if (@Model.ViewType == 1)
+                                        {@Model.Specialist.name}
+                                        else if (@Model.ViewType == 2)
+                                        {@Model.Farmer.name}
+                                        else { 
+                                        @Model.Agent.name
+                                        }
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="postLabel">Contact Number:</label>
+                                        <br>
+                                        <label class="postLabelValue">
+                                            @if (@Model.ViewType == 1)
+                                            {@Model.Specialist.contact_number}
+                                        else if (@Model.ViewType == 2)
+                                        {@Model.Farmer.contact_number}
+                                    else
+                                    {
+                                        @Model.Agent.contact_number
+                                    }
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="postLabel">Bkash Number:</label>
+                                        <br>
+                                        <label class="postLabelValue">
+                                            @if (@Model.ViewType == 1)
+                                            {@Model.Specialist.bkash_number}
+                                        else if (@Model.ViewType == 2)
+                                        {@Model.Farmer.bkash_number}
+                                    else
+                                    {
+                                        @Model.Agent.bkash_number
+                                    }
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="postLabel">Email Address:</label>
+                                        <br>
+                                        <label class="postLabelValue">
+                                            @if (@Model.ViewType == 1)
+                                            {@Model.Specialist.email}
+                                        else if (@Model.ViewType == 2)
+                                        {@Model.Farmer.email}
+                                    else
+                                    {
+                                        @Model.Agent.email
+                                    }
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="postLabel">Rank:</label>
+                                        <br>
+                                        @if (@Model.ViewType == 1)
+                                        {<label class="postLabelValue">Crops Specialist</label>}
+                                        else if (@Model.ViewType == 2)
+                                        {<label class="postLabelValue">Farmer</label>}
+                                        else
+                                        {
+                                        <label class="postLabelValue">Agent</label>
+                                        }
+                                    </div>
+                                </div>
+                            @if(Model.ViewType==1){
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <label class="postLabel">Attachments:</label>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <a href="~/Certificate/@Model.Specialist.certificate_file_path" download>
+                                                <img src="~/images/certificate.svg" class="w-100" alt="Download Certificate">
+                                            </a>
+                                        </div>
+                                        <div class="col-2 pt-2">
+                                            <a href="~/Nid/@Model.Specialist.certificate_file_path" download>
+                                                <img src="~/images/card.svg" class="w-100" alt="Download National ID Card">
+                                            </a>
+                                        </div>
+                                        <div class="col-8"></div>
+                                    </div>
+                                </div>
+                            </div>
+                                }
+                               
+                            </div>
+                            <div class="col-4">
+                                <img src="~/Image/@if (@Model.ViewType == 1)
+                                            {@Model.Specialist.profile_picture_path}
+                                        else if (@Model.ViewType == 2)
+                                        {@Model.Farmer.profile_picture_path}
+                                    else
+                                    {
+                                        @Model.Agent.profile_picture_path
+                                    }" class="img-thumbnail">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4 text-center">
+                                @if (@Model.ViewType == 1)
+                                {<input type="submit" name="accept" value="OK" class="btn btn-sm acceptBt" onclick="location.href='/Admins/AdminHomeDetailsPage/1';">}
+                                else if (@Model.ViewType == 2)
+                                {<input type="submit" name="accept" value="OK" class="btn btn-sm acceptBt" onclick="location.href='/Admins/AdminHomeDetailsPage/2';">}
+                                else
+                                {
+                                <input type="submit" name="accept" value="OK" class="btn btn-sm acceptBt" onclick="location.href='/Admins/AdminHomeDetailsPage/3';">
+                                }
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        function img(id) {
+            modal.style.display = "block";
+            modalImg.src = document.getElementById(id).src;
+        }
+        var span = document.getElementsByClassName("close")[1];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js">
+    </script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

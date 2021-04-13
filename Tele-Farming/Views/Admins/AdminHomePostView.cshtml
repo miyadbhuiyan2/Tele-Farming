@@ -1,0 +1,228 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.Post.title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/admin_post_view_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div id="main">
+                <span onclick="openNav()" class="fas fa-bars"></span>
+                <a class="navbar-brand" href="#"><img src="~/images/large.png"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> MIYAD</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/Admins/AdminHome/" class="menuItem active"><i class="fas fa-home"></i><span class="mr-2"></span> Home</a>
+        <a href="/Admins/AdminJoinRequests/" class="menuItem"><i class="fas fa-user-plus"></i><span class="mr-2"></span> Join Request</a>
+        <a href="/Admins/AdminComplains/" class="menuItem"><i class="fas fa-inbox"></i><span class="mr-2"></span> Complain</a>
+    </div>
+    <!--End Side Navigation-->
+    <!--Image Preview-->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content p-1" id="img01">
+    </div>
+    <!--SideBar--->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "310px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row postView">
+                    <div class="col-md-12">
+                        <h5>@Model.Post.title</h5>
+                        <p class="text-justify postDescription">@Model.Post.description</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">Category:</label>
+                                <br>
+                                <label class="postLabelValue">@Model.Post.Category</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">Post ID:</label>
+                                <br>
+                                <label class="postLabelValue">@Model.Post.post_id</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">Appointment Time Provided:</label>
+                                <br>
+                                @foreach (var t in Model.Post.Post_Time)
+                                {
+                                    <label class="postLabelValue appointTime">@t.time</label>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">Images Provided:</label>
+                                <div class="row">
+                                    @{
+                                        int i = 1;
+                                        String imgSrc = "myImg" + i.ToString();
+                                        foreach (var t in Model.Post.Post_Images)
+                                        {
+                                            <div class="col-md-2 mb-2">
+                                                <img id="myImg@(i)" src="~/Image/@t.image_path" class="img-thumbnail" onclick="img('myImg@(i)')">
+                                            </div>
+                                            i++;
+                                        }
+                                        for (int j = i; j <= 6; j++)
+                                        {
+                                            <div class="col-md-2 mb-2"></div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6>Farmer Details</h6>
+                                <label class="postLabel">Name:</label>
+                                <br>
+                                @if (@Model.PostedBy != "Agent")
+                                {
+                                    <label class="postLabelValue">@Model.Post.Farmer.name</label>
+                                }
+                                else
+                                {
+                                    <label class="postLabelValue">@Model.Post.FarmerDetails.name</label>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">Contact Number:</label>
+                                <br>
+                                @if (@Model.PostedBy != "Agent")
+                                {
+                                    <label class="postLabelValue">@Model.Post.Farmer.contact_number</label>
+                                }
+                                else
+                                {
+                                    <label class="postLabelValue">@Model.Post.FarmerDetails.contact_number</label>
+                                }
+
+                            </div>
+                        </div>
+                        <hr>
+                        @if (@Model.PostedBy == "Agent")
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>Agent Details</h6>
+                                    <label class="postLabel">Name:</label>
+                                    <br>
+                                    <label class="postLabelValue">@Model.Post.Agent.name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="postLabel">Contact Number:</label>
+                                    <br>
+                                    <label class="postLabelValue">@Model.Post.Agent.contact_number</label>
+                                </div>
+                            </div>
+                            <hr>
+                        }
+                        @if (Model.hasMeeting != "NO")
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>Specialist's Response</h6>
+                                    <label class="postLabel">Name:</label>
+                                    <br>
+                                    <label class="postLabelValue">@Model.Post.Meeting.Specialist.name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="postLabel">Meeting Time:</label>
+                                    <br>
+                                    <label class="postLabelValue appointTime">@Model.Post.Meeting.meeting_time </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="postLabel">Meeting Link:</label>
+                                    <br>
+                                    <label class="postLabelValue appointTime">@Model.Post.Meeting.meeting_link</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="postLabel">Short Note:</label>
+                                    <br>
+                                    <p class="text-justify postDescription">@Model.Post.Meeting.short_message</p>
+                                </div>
+                            </div>
+                            <hr>
+                        }
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4 text-center">
+                                <input type="submit" name="accept" value="OK" class="btn btn-sm acceptBt" onclick="location.href='/Admins/AdminHomeDetailsPage/4';">
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        function img(id) {
+            modal.style.display = "block";
+            modalImg.src = document.getElementById(id).src;
+        }
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js"></script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

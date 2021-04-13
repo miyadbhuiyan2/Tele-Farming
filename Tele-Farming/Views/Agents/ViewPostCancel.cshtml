@@ -1,0 +1,190 @@
+﻿@model Tele_Farming.Models.Post
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/ViewPost/view_post_page.css" />
+    <link rel="stylesheet" href="~/css/ViewPost/nav.css" />
+</head>
+<body>
+
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="home.php"><img src="~/images/ViewPost/large.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="../Post Page/post_page.html"><i class="fas fa-newspaper"></i> HOME</a>
+                    </li>
+                    <li>
+                        <a class="nav-link profile_image_nav" href="../Edit Profile Page/edit_profile_page.html"><i class="fas fa-user"></i> Miyad</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="../Sign In Page Farmer/sign_in_page_farmer.html"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+
+    <br>
+    <div class="container">
+
+
+        <div class="row">
+            <div class="title">
+                <h3> @Model.title </h3>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="description">
+                <p>
+                    @Model.description
+                </p>
+            </div>
+        </div>
+
+        <p>Appointment Time Provided:</p>
+        <div class="row">
+            @foreach (var t in Model.Post_Time)
+            {
+                <div class="time">
+                    <div class="btn"> @t.time </div>
+                </div>
+            }
+        </div>
+
+
+        <div class="row row_image">
+            <p>Images Provided:</p>
+            @foreach (var t in Model.Post_Images)
+            {
+                <div class="image"><img src="~/Image/@t.image_path" alt=""> </div>
+            }
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="line"></div>
+        </div>
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <h3>Farmer Details</h3>
+            </div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <p>Name:</p>
+                <h6> @Model.FarmerDetails.name </h6>
+            </div>
+        </div>
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <p>Contact No:</p>
+                <h6> @Model.FarmerDetails.contact_number </h6>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="line"></div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <h3>Specialist Response</h3>
+            </div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <p>Name:</p>
+                <h6>@Model.Meeting.Specialist.name</h6>
+            </div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="short_notes">
+                <p>Short Notes:</p>
+                <h6>@Model.Meeting.short_message</h6>
+            </div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="meeting_time">
+                <p>Meeting time:</p>
+                <h6>@Model.Meeting.meeting_time</h6>
+            </div>
+        </div>
+
+
+
+
+        <div class="row s_row">
+            <div class="meeting_link">
+                <p>Meeting link:</p>
+                <div class="meeting_link_text">
+                    <h6>@Model.Meeting.meeting_link</h6>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="line"></div>
+        </div>
+
+
+        <div class="row s_row">
+            <div class="ok_button">
+                <button class="btn">Meeting Finished</button>
+                <button class="btn">Cancel Meeting</button>
+                <button class="btn"> <a asp-controller="Agents" asp-action="Post" asp-route-id=@Model.agent_id>OK</a> </button>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+</body>
+</html>

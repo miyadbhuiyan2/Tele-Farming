@@ -1,0 +1,97 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complains</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/admin_complain_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div id="main">
+                <span onclick="openNav()" class="fas fa-bars"></span>
+                <a class="navbar-brand" href="#"><img src="~/images/large.png"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> MIYAD</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/Admins/AdminHome/" class="menuItem"><i class="fas fa-home"></i><span class="mr-2"></span> Home</a>
+        <a href="/Admins/AdminJoinRequests/" class="menuItem"><i class="fas fa-user-plus"></i><span class="mr-2"></span> Join Request</a>
+        <a href="/Admins/AdminComplains/" class="menuItem active"><i class="fas fa-inbox"></i><span class="mr-2"></span> Complain</a>
+    </div>
+    <!--End Side Navigation-->
+    <!--SideBar--->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "310px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                @foreach (var item in Model.ComplainList)
+                {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                @if (@item.MeetingFailure.Meeting.Post.Farmer != null)
+                                {
+
+                                    <h6 class="card-title">@item.MeetingFailure.Meeting.Post.Farmer.name</h6>
+                                }
+                                else
+                                {
+                                    <h6 class="card-title">@item.MeetingFailure.Meeting.Post.FarmerDetails.name</h6>
+                                }
+                                <p class="card-subtitle">@item.time</p>
+                                <hr>
+                                <div class="row mt-0">
+                                    <div class="col-7">
+                                        <p class="joinCategory">Subject: @item.category</p>
+                                    </div>
+                                    <div class="col-5 text-right">
+                                        <input type="button" name="" class="button" value="VIEW" onclick="location.href = '/Admins/AdminComplainView/@item.complain_id';">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js"></script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

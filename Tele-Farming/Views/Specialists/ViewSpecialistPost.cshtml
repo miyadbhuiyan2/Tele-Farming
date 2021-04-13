@@ -1,0 +1,253 @@
+﻿@*@model Tele_Farming.Models.Post;*@
+@model Tele_Farming.Models.Combined_Read_Write_Posts;
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/post_view_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="home.php"><img src="~/images/large.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+
+
+                    <li>
+                        <a class="nav-link active" asp-controller="Specialists" asp-action="ForumPage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-newspaper"></i> ফোরাম</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="TaskList" asp-route-id=@Model.Specialist.specialist_id asp-route-meeting_type="All"><i class="fas fa-tasks"></i>  বৈঠক সমূহ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="ProfilePage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-user"></i> @Model.Specialist.name</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="SignOutUser" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-sign-out-alt"></i> প্রস্থান</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <!-- Modal -->
+    <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header pb-0">
+                    <button type="button" class="close pb-0" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-success">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("SetMeeting", "Specialists", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @*<form>*@
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.ValidationSummary(true)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">সাক্ষাতের সময় নির্বাচন করুন:</label>
+                                <br>
+
+                                @*@Html.TextBoxFor(x => x.Meeting.specialist_id, new { @Value = 1, @Type = "hidden" })
+                                    @Html.TextBoxFor(x => x.Meeting.post_id, new { @Value = Model.post_id, @Type = "hidden" })*@
+
+                                <input type="hidden" asp-for="Meeting.specialist_id" value=@Model.Specialist.specialist_id />
+                                <input type="hidden" asp-for="Meeting.post_id" value=@Model.Post.post_id />
+                                <input type="hidden" asp-for="Meeting.meeting_status" value="Pending" />
+
+                                @foreach (var item in Model.Post.Post_Time)
+                                {
+                                    <label class="pl-1 postLabelValue">
+                                        @*<input type="radio" name="radio" value="@item.time" checked> @item.time*@
+                                        @*@Html.RadioButtonFor(x => x.Meeting.meeting_time, new { @Name = "radio", @Value = item.time })*@
+                                        @Html.RadioButtonFor(x => x.Meeting.meeting_time, item.time)
+                                        @item.time
+                                    </label>
+                                    <br>
+                                }
+                                <span asp-validation-for="Meeting.meeting_time" class="validation_span text-left"> </span>
+
+                                @*<label class="pl-1 postLabelValue">
+                                        <input type="radio" name="radio" value="11 December, 2020 2pm"> 11 December, 2020 2pm
+                                    </label>
+                                    <br>
+                                    <label class="pl-1 postLabelValue">
+                                        <input type="radio" name="radio" value="12 December, 2020 3pm"> 12 December, 2020 3pm
+                                    </label>*@
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel" for="meetingLink">সাক্ষাতের লিঙ্ক:</label>
+                                <br>
+                                @*<input type="text" name="meetingLink" class="w-100 pl-1" required>*@
+                                @Html.EditorFor(x => x.Meeting.meeting_link, new { @Type = "text", @Name = "meetingLink", @Class = "w-100 pl-1" })
+                                <span asp-validation-for="Meeting.meeting_link" class="validation_span text-left"> </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel" for="shortNote">সংক্ষিপ্ত খুদেবার্তা(যদি প্রয়োজন):</label>
+                                <br>
+                                @*<textarea name="shortNote" class="w-100 pl-1"></textarea>*@
+                                @Html.TextAreaFor(x => x.Meeting.short_message, new { @Name = "shortNote", @Class = "w-100 pl-1" })
+                                <span asp-validation-for="Meeting.short_message" class="validation_span text-left"> </span>
+                            </div>
+                        </div>
+                        @*</form>*@
+                        <div class="row text-center">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" name="accept" value="জমা দিন" class="btn btn-sm acceptBt">
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="modal-footer d-block">
+                    @*<div class="row text-center">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" name="accept" value="SUBMIT" class="btn btn-sm acceptBt">
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Image Preview-->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content p-1" id="img01">
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <div class="row postView mt-5">
+                    <div class="col-md-12">
+                        <h5> @Model.Post.title </h5>
+                        <p class="text-justify postDescription"> @Model.Post.description </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">ধরন:</label>
+                                <br>
+                                <label class="postLabelValue">Crops</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">পোস্ট আইডি:</label>
+                                <br>
+                                <label class="postLabelValue"> @Model.Post.post_id </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">প্রদত্ত সাক্ষাতের সময়:</label>
+                                <br>
+
+                                @foreach (var item in Model.Post.Post_Time)
+                                {
+                                    <label class="postLabelValue appointTime"> @item.time.ToString("dd MMM, yyy hh:mm tt") </label>
+                                    @*<label class="postLabelValue appointTime">11 December, 2020 2pm </label>
+                                        <label class="postLabelValue appointTime">12 December, 2020 3pm </label>*@
+                                }
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="postLabel">প্রদত্ত ছবিসমূহ:</label>
+                                <div class="row">
+
+                                    @{
+                                        var i = 0;
+                                    }
+                                    @foreach (var item in Model.Post.Post_Images)
+                                    {
+                                        <div class="col-md-2 mb-2">
+                                            <img id="myImg@(i)" src="~/Image/@item.image_path" class="img-thumbnail" onclick="img('myImg@(i)')">
+                                        </div>
+                                        i++;
+                                    }
+
+
+
+                                    @*<div class="col-md-2 mb-2">
+                                            <img id="myImg2" src="~/images/5900789108456.jpg" class="img-thumbnail" onclick="img('myImg2')">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <img id="myImg3" src="~/images/download (1).jpg" class="img-thumbnail" onclick="img('myImg3')">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <img id="myImg4" src="~/images/download (2).jpg" class="img-thumbnail" onclick="img('myImg4')">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <img id="myImg5" src="~/images/download (3).jpg" class="img-thumbnail" onclick="img('myImg5')">
+                                        </div>
+                                        <div class="col-md-2 mb-2">
+                                            <img id="myImg6" src="~/images/download (4).jpg" class="img-thumbnail" onclick="img('myImg6')">
+                                        </div>*@
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" name="accept" value="গ্রহণ করুন" class="btn btn-sm acceptBt" data-toggle="modal" data-target="#exampleModalCenter">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        function img(id) {
+            modal.style.display = "block";
+            modalImg.src = document.getElementById(id).src;
+        }
+        var span = document.getElementsByClassName("close")[1];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js">
+    </script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

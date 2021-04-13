@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Tele_Farming.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.farmer_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.agent_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.post_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.post_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_accepted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.farmer_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.agent_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.post_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.post_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_accepted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.post_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.post_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

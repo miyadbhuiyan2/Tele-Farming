@@ -1,0 +1,114 @@
+﻿@model Tele_Farming.Models.Farmer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/css/Sign Up Page Farmer/sign_up_page_farmer.css">
+    <link rel="stylesheet" href="~/css/Sign Up Page Farmer/sign_up_button.css">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+
+
+                <form asp-action="Create" class="section1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form">
+                        @Html.ValidationSummary(true)
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/person.svg" class="email_icon_img" alt="">
+                            <input type="text" class="input_section text-left" placeholder="নাম" asp-for="name">
+                            <span asp-validation-for="name" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/email-24px.svg" class="email_icon_img" alt="">
+                            <input type="text" class="input_section" placeholder="ইমেইল" asp-for="email">
+                            <span asp-validation-for="email" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/phone.svg" class="email_icon_img" alt="">
+                            <input type="text" class="input_section" placeholder="যোগাযোগ নম্বর" asp-for="contact_number">
+                            <span asp-validation-for="contact_number" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/bkash.svg" class="email_icon_img" alt="">
+                            <input type="text" class="input_section" placeholder="বিকাশ নম্বর(ঐচ্ছিক)" asp-for="bkash_number">
+                            <span asp-validation-for="bkash_number" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/lock-24px.svg" class="email_icon_img" alt="">
+                            <input type="password" class="input_section" placeholder="নতুন পাস ওয়ার্ড" asp-for="password">
+                            <span asp-validation-for="password" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign Up Page Farmer/lock-24px.svg" class="email_icon_img" alt="">
+                            <input type="password" class="input_section text-left" placeholder="পুনরায় নতুন পাস ওয়ার্ড" asp-for="confirm_password">
+                            <span asp-validation-for="confirm_password" class="validation_span text-left"> </span>
+                        </div>
+
+                        <div class="form_submit_section">
+                            <div class="have_an_account">
+                                <p>Already have an account?</p>
+                                <a asp-controller="Farmers" asp-action="SignIn"><p class="login_p">Login</p></a>
+                            </div>
+                            <input class="btn btn-success sign_up_button" value="নিবন্ধন করুন" type="submit" id="input_submit">
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+
+
+
+            </div>
+            <div class="col-lg-3"></div>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    $("span").attr('style', 'visibility: hidden !important');
+    $("#input_submit").click(function () {
+        $("span").attr('style', 'visibility: visible !important');
+    });
+
+</script>
+
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

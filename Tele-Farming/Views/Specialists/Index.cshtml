@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Tele_Farming.Models.Specialist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contact_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bkash_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.certificate_file_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nid_file_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.profile_picture_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_approved)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bkash_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.certificate_file_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nid_file_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.profile_picture_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_approved)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.specialist_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.specialist_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.specialist_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

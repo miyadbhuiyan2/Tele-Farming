@@ -1,0 +1,201 @@
+﻿@*@model IEnumerable< Tele_Farming.Models.Meeting >*@
+@model Tele_Farming.Models.Combined_Read_Write_Posts
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>বৈঠক সমূহ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/task_list_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="home.php"><img src="~/images/large.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+
+                    <li>
+                        <a class="nav-link active" asp-controller="Specialists" asp-action="ForumPage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-newspaper"></i> ফোরাম</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="TaskList" asp-route-id=@Model.Specialist.specialist_id asp-route-meeting_type="All"><i class="fas fa-tasks"></i> বৈঠক সমূহ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="ProfilePage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-user"></i> @Model.Specialist.name</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="SignOutUser" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-sign-out-alt"></i> প্রস্থান</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="subNav">
+        <div class="navbar">
+            <ul>
+                @*@foreach (var m in Model)
+                    {*@
+
+                @if (ViewData["meeting_type"] != null)
+                {
+                    @if (ViewData["meeting_type"].Equals("All"))
+                    {
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="All" class="active">সব</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Pending">অপেক্ষমান</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Finished">সম্পন্ন</a></li>
+                    }
+                    else if (ViewData["meeting_type"].Equals("Pending"))
+                    {
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="All">সব</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Pending" class="active">অপেক্ষমান</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Finished">সম্পন্ন</a></li>
+                    }
+                    else if (ViewData["meeting_type"].Equals("Finished"))
+                    {
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="All">সব</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Pending">অপেক্ষমান</a></li>
+                        <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Finished" class="active">সম্পন্ন</a></li>
+                    }
+                }
+                else
+                {
+                    <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="All" class="active">সব</a></li>
+                    <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Pending">অপেক্ষমান</a></li>
+                    <li><a asp-controller="Specialists" asp-action="TaskList" asp-route-id=@ViewData["specialist_id"] asp-route-meeting_type="Finished">সম্পন্ন</a></li>
+                }
+
+
+
+
+
+                @*<li><a href="#">Failed</a></li>*@
+                @*break;
+                    }*@
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-2"></div>
+            <div class="col-lg-6 col-8">
+
+                @foreach (var m in Model.MeetingList)
+                {
+                    @if (m.meeting_status == "Pending")
+                    {
+                        <div class="row postView postPending">
+                            <div class="col-12">
+                                <h6>  @m.Post.title  </h6>
+                                <p class="text-muted postDate"> সাক্ষাতের সময়: @m.meeting_time </p>
+                                <p class="postDescription">
+                                    <i class="fas fa-check-circle text-warning"></i> Meeting<br>
+                                    @*<i class="fas fa-check-circle text-warning"></i> Payment*@
+                                </p>
+                                <hr>
+                                <div class="row mt-0">
+                                    <div class="col-7">
+                                        <p class="postCategory">ধরন: Crops</p>
+                                    </div>
+                                    <div class="col-5 text-right">
+                                        @*<input type="button" name="" class="button" value="VIEW" onclick="location.href='task_view.html';">*@
+                                        <button type="button" name="" value="" class="button"> <a asp-controller="Specialists" asp-action="TaskView" asp-route-id=@m.meeting_id asp-route-s_id=@m.Specialist.specialist_id>দেখুন</a> </button>
+                                        @*<a asp-controller="Specialists" asp-action="TaskView" asp-route-id=@m.meeting_id> VIEW </a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (m.meeting_status == "Finished")
+                    {
+                        <div class="row postView postCompleted">
+                            <div class="col-12">
+                                <h6>  @m.Post.title  </h6>
+                                <p class="text-muted postDate"> সাক্ষাতের সময়: @m.meeting_time </p>
+                                <p class="postDescription">
+                                    <i class="fas fa-check-circle text-success"></i> Meeting<br>
+                                    @*<i class="fas fa-check-circle text-success"></i> Payment*@
+                                </p>
+                                <hr>
+                                <div class="row mt-0">
+                                    <div class="col-7">
+                                        <p class="postCategory">ধরন: Crops</p>
+                                    </div>
+                                    <div class="col-5 text-right">
+                                        @*<input type="button" name="" class="button" value="VIEW" onclick="location.href='task_view.html';">*@
+                                        <button type="button" name="" value="" class="button"> <a asp-controller="Specialists" asp-action="TaskView" asp-route-id=@m.meeting_id asp-route-s_id=@m.Specialist.specialist_id>VIEW</a> </button>
+                                        @*<a asp-controller="Specialists" asp-action="TaskView" asp-route-id=@m.meeting_id> VIEW </a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+
+
+
+                @*<div class="row postView postPending">
+                        <div class="col-12">
+                            <h6>A Disease on paddy</h6>
+                            <p class="text-muted postDate">Appointment: 20-DEC-2020 08:03PM</p>
+                            <p class="postDescription">
+                                <i class="fas fa-clock text-warning"></i> Meeting<br>
+                                <i class="fas fa-clock text-warning"></i> Payment
+                            </p>
+                            <hr>
+                            <div class="row mt-0">
+                                <div class="col-7">
+                                    <p class="postCategory">Category: Crops</p>
+                                </div>
+                                <div class="col-5 text-right">
+                                    <input type="button" name="" class="button" value="VIEW">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row postView postFailed">
+                        <div class="col-12">
+                            <h6>A Disease on paddy</h6>
+                            <p class="text-muted postDate">Appointment: 20-DEC-2020 08:03PM</p>
+                            <p class="postDescription">
+                                <i class="fas fa-times-circle text-danger"></i> Meeting<br>
+                                <i class="fas fa-times-circle text-danger"></i></i> Payment
+                            </p>
+                            <hr>
+                            <div class="row mt-0">
+                                <div class="col-7">
+                                    <p class="postCategory">Category: Crops</p>
+                                </div>
+                                <div class="col-5 text-right">
+                                    <input type="button" name="" class="button" value="VIEW">
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+            </div>
+            <div class="col-lg-3 col-2"></div>
+        </div>
+    </div>
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js">
+    </script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

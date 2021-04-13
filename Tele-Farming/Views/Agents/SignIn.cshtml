@@ -1,0 +1,106 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="~/css/Sign In Page Farmer/sign_in_page_farmer.css">
+    <link rel="stylesheet" href="~/css/Sign In Page Farmer/sign_in_button.css">
+    <link rel="stylesheet" href="~/css/Sign In Page Farmer/section1.css">
+    @*<script src="~/js/Sign In Page Farmer/sign_in_page_farmer.js"></script>*@
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-1"></div>
+
+
+            <div class="col-lg-10">
+
+                <div class="section_1">
+                    @*<form asp-action="Login" method="post" >*@
+
+                    @using (Html.BeginForm("Login", "Agents", FormMethod.Post, new { @id = "form" }))
+                    {
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form_section">
+                            @Html.ValidationSummary(true)
+                            <img src="~/images/Sign In Page Farmer/email-24px.svg" class="email_icon_img" alt="">
+                            <!--								<p>Password</p>-->
+                            <!--							<div class="input_section">-->
+
+                            @Html.EditorFor(m => m.Agent.email, new { htmlAttributes = new { @id = "email_input", @class = "input_section", placeholder = "ইমেইল" } })
+                            <span asp-validation-for="Agent.email" class="validation_span text-left"> </span>
+
+                            @*<input type="text" class="input_section" placeholder="Email" asp-for="email" >*@
+                            <!--							</div>-->
+                            <div id="email_input_p" class="email_input_p"> </div>
+                        </div>
+                        <div id="email_input_p" class="email_input_p"> </div>
+
+                        <div class="form_section">
+                            <img src="~/images/Sign In Page Farmer/lock-24px.svg" class="password_icon_img" alt="">
+                            <!--								<p>Email</p>-->
+                            <!--							<div class="input_section">-->
+
+                            @Html.EditorFor(m => m.Agent.password, new { htmlAttributes = new { @id = "password_input", @class = "input_section", placeholder = "পাসওয়ার্ড", type = "password" } })
+                            <span asp-validation-for="Agent.password" class="validation_span text-left"> </span>
+                            @*<input type="password" class="input_section" placeholder="Password" asp-for="password">*@
+                            <!--							</div>-->
+                            <div id="password_input_p"> </div>
+                        </div>
+                        <div id="password_input_p"> </div>
+
+                        <div class="form_submit_section">
+                            <div class="have_an_account">
+                                <p>অ্যাকাউন্ট নেই?</p>
+                                <a asp-controller="Agents" asp-action="SignUp"><p class="login_p">নিবন্ধন করুন</p></a>
+                            </div>
+                            <input class="btn btn-success sign_up_button" type="submit" name="submit" value="সাইন ইন করুন" />
+                            <div id="submit_input_p"> </div>
+                        </div>
+                        <div id="submit_input_p"> </div>
+                        <div class="have_an_account">
+                            <a asp-controller="Agents" asp-action="PasswordReset"><p class="login_p">পাসওয়ার্ড ভুলে গেছেন?</p></a>
+                        </div>
+                    }
+                    <!--
+                                            <div class="back_button">
+                                                <a href="#"><img src="back.svg" alt=""></a>
+                                            </div>
+                    -->
+                    @*</form>*@
+                </div>
+
+
+                <div class="section_2">
+                    <img src="~/images/Sign In Page Farmer/filler_image_4.png" alt="">
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-1"></div>
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

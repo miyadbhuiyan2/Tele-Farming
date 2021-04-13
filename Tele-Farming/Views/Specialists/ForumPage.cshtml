@@ -1,0 +1,623 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model Tele_Farming.Models.Combined_Read_Write_Posts
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ফোরাম পৃষ্ঠা</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/forum_page_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script lang="javascript">
+        ////////////////////Date//////////////////////////////
+        var day = 0, month = -1, year = 2020, dayRange = 31;
+        var mon = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG",
+            "SEP", "OCT", "NOV", "DEC"];
+        var dFlag = false, mFlag = false, yFlag = false;
+        function monthDownFunc() {
+            mFlag = true;
+            if ((dFlag == false) && (yFlag == false)) {
+                dayDownFunc();
+                yearDownFunc();
+            }
+            month++;
+            if (month == 12) {
+                month = 0;
+            }
+            if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
+                dayRange = 31;
+
+            }
+            else if (month == 1) {
+                if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+                    dayRange = 29;
+                }
+                else {
+                    dayRange = 28;
+                }
+
+            }
+            else {
+                dayRange = 30;
+            }
+            document.getElementById("monthSpan").value = mon[month];
+            document.getElementById("monthSpan2").value = mon[month];
+
+        }
+        function dayDownFunc() {
+            dFlag = true;
+            if ((mFlag == false) && (yFlag == false)) {
+                monthDownFunc();
+                yearDownFunc();
+            }
+            day++;
+            if (day > dayRange) {
+                day = 1;
+            }
+            document.getElementById("daySpan").value = day;
+            document.getElementById("daySpan2").value = day;
+        }
+        function yearDownFunc() {
+            yFlag = true;
+            if ((dFlag == false) && (mFlag == false)) {
+                dayDownFunc();
+                monthDownFunc();
+            }
+            year++;
+            document.getElementById("yearSpan").value = year;
+            document.getElementById("yearSpan2").value = year;
+        }
+        //////////UP//////////////////////////////////////////
+        function monthUpFunc() {
+            mFlag = true;
+            if ((dFlag == false) && (yFlag == false)) {
+                dayDownFunc();
+                yearDownFunc();
+            }
+            month--;
+            if (month <= -1) {
+                month = 11;
+            }
+            if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
+                dayRange = 31;
+
+            }
+            else if (month == 1) {
+                if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+                    dayRange = 29;
+                }
+                else {
+                    dayRange = 28;
+                }
+
+            }
+            else {
+                dayRange = 30;
+            }
+            document.getElementById("monthSpan").value = mon[month];
+            document.getElementById("monthSpan2").value = mon[month];
+        }
+        function dayUpFunc() {
+            dFlag = true;
+            if ((mFlag == false) && (yFlag == false)) {
+                monthDownFunc();
+                yearDownFunc();
+            }
+            day--;
+            if (day <= 0) {
+                day = dayRange;
+            }
+            document.getElementById("daySpan").value = day;
+            document.getElementById("daySpan2").value = day;
+        }
+        function yearUpFunc() {
+            yFlag = true;
+            if ((dFlag == false) && (mFlag == false)) {
+                dayDownFunc();
+                monthDownFunc();
+            }
+            year--;
+            if (year <= 2020) {
+                year = 2021;
+            }
+            document.getElementById("yearSpan").value = year;
+            document.getElementById("yearSpan2").value = year;
+        }
+
+        ///////////////////Time////////////////////////////
+        var hour = 0, minute = "30", amPm = "PM";
+        var hFlag = false, minFlag = false, apFlag = false;
+        function hourUpFunc() {
+            hFlag = true;
+            if ((minFlag == false) && (apFlag == false)) {
+                minuteUpFunc();
+                ampmUpFunc();
+            }
+            hour--;
+            if (hour <= 0) {
+                hour = 12;
+            }
+            document.getElementById("hourSpan").value = hour;
+            document.getElementById("hourSpan2").value = hour;
+        }
+        function minuteUpFunc() {
+            minFlag = true;
+            if ((hFlag == false) && (apFlag == false)) {
+                hourUpFunc();
+                ampmUpFunc();
+            }
+            if (minute == "00") {
+                minute = "30";
+            }
+            else {
+                minute = "00";
+            }
+            document.getElementById("minuteSpan").value = minute;
+            document.getElementById("minuteSpan2").value = minute;
+        }
+        function ampmUpFunc() {
+            apFlag = true;
+            if ((minFlag == false) && (hFlag == false)) {
+                minuteUpFunc();
+                hourUpFunc();
+            }
+            if (amPm == "PM") {
+                amPm = "AM";
+            }
+            else {
+                amPm = "PM";
+            }
+            document.getElementById("ampmSpan").value = amPm;
+            document.getElementById("ampmSpan2").value = amPm;
+        }
+        //////////Down//////////////////////////////////////////
+        function hourDownFunc() {
+            hFlag = true;
+            if ((minFlag == false) && (apFlag == false)) {
+                minuteUpFunc();
+                ampmUpFunc();
+            }
+            hour++;
+            if (hour >= 13) {
+                hour = 1;
+            }
+            document.getElementById("hourSpan").value = hour;
+            document.getElementById("hourSpan2").value = hour;
+        }
+        function minuteDownFunc() {
+            minFlag = true;
+            if ((hFlag == false) && (apFlag == false)) {
+                hourUpFunc();
+                ampmUpFunc();
+            }
+            if (minute == "00") {
+                minute = "30";
+            }
+            else {
+                minute = "00";
+            }
+            document.getElementById("minuteSpan").value = minute;
+            document.getElementById("minuteSpan2").value = minute; 2
+        }
+
+        function clearDate() {
+            dFlag = false; mFlag = false; yFlag = false;
+            month = -1;
+            day = 0;
+            year = 2020;
+            document.getElementById("daySpan").value = "--";
+            document.getElementById("monthSpan").value = "--";
+            document.getElementById("yearSpan").value = "--";
+            document.getElementById("daySpan2").value = "--";
+            document.getElementById("monthSpan2").value = "--";
+            document.getElementById("yearSpan2").value = "--";
+        }
+        function clearTime() {
+            hFlag = false; minFlag = false; apFlag = false;
+            hour = 0;
+            minute = "30";
+            amPm = "AM";
+            document.getElementById("hourSpan").value = "--";
+            document.getElementById("minuteSpan").value = "--";
+            document.getElementById("ampmSpan").value = "--";
+            document.getElementById("hourSpan2").value = "--";
+            document.getElementById("minuteSpan2").value = "--";
+            document.getElementById("ampmSpan2").value = "--";
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+    <form asp-action="ForumPage">
+
+        <div class="modal" id="exampleModalDate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header pb-0">
+                        <h5>সাক্ষাতের তারিখ:</h5>
+                        <button type="button" class="close pb-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-success">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="dayUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="day" type="text" name="day" id="daySpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="dayDownFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="monthUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="month" type="text" name="month" id="monthSpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="monthDownFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="yearUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="year" type="text" name="year" id="yearSpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="yearDownFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12 text-center">
+                                <input type="submit" name="filterDate" class="btn btn-outline-success btn-sm" value="ফিল্টার">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-right">
+                                <i class="fas fa-undo text-success" onclick="clearDate()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="modal" id="exampleModalTime" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header pb-0">
+                        <h5>সাক্ষাতের সময়:</h5>
+                        <button type="button" class="close pb-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-success">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="hourUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="hour" type="text" name="hour" id="hourSpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="hourDownFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="minuteUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="minute" type="text" name="minute" id="minuteSpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="minuteDownFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+                            <div class="col-4 text-center">
+                                <span class="border border-success rounded-circle" onclick="ampmUpFunc()">
+                                    <i class="fas fa-angle-up text-success upBt"></i>
+                                </span>
+                                <br>
+                                <input asp-for="am_pm" type="text" name="am_pm" id="ampmSpan2" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                <br>
+                                <span class="border border-success rounded-circle" onclick="ampmUpFunc()">
+                                    <i class="fas fa-angle-down text-success downBt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12 text-center">
+                                <input type="submit" name="filterDate" class="btn btn-outline-success btn-sm" value="ফিল্টার">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-right">
+                                <i class="fas fa-undo text-success" onclick="clearTime()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="home.php"><img src="~/images/large.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+
+                    <li>
+                        <a class="nav-link active" asp-controller="Specialists" asp-action="ForumPage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-newspaper"></i> ফোরাম</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="TaskList" asp-route-id=@Model.Specialist.specialist_id asp-route-meeting_type="All"><i class="fas fa-tasks"></i> বৈঠক সমূহ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="ProfilePage" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-user"></i> @Model.Specialist.name</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Specialists" asp-action="SignOutUser" asp-route-id=@Model.Specialist.specialist_id><i class="fas fa-sign-out-alt"></i> প্রস্থান</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+
+    @if (Model.Specialist.is_approved == 1)
+    {
+        <div class="container">
+            <div class="row">
+                <!--Filter-->
+                <div class="col-lg-3 pr-4 pl-4" id="filterPanel">
+
+                    <form asp-action="ForumPage">
+                        <div class="row filterBox">
+                            <div class="col-12">
+                                <h5>সাক্ষাতের তারিখ:</h5>
+                                <div class="row">
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="dayUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="day" type="text" name="day" id="daySpan" class="digitBox text-light pt-1 pb-1 pr-4 pl-4" readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="dayDownFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="monthUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="month" type="text" name="month" id="monthSpan" class="digitBox text-light pt-1 pb-1 pr-3 pl-3" readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="monthDownFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="yearUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="year" type="text" name="year" id="yearSpan" class="digitBox text-light pt-1 pb-1 pr-3 pl-3" readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="yearDownFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-lg-12 text-center">
+                                        <input type="submit" name="filterDate" class="btn btn-outline-success btn-sm" value="ফিল্টার">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-right">
+                                        <i class="fas fa-undo text-success" onclick="clearDate()"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row filterBox mt-5 mb-3">
+                            <div class="col-12">
+                                <h5>সাক্ষাতের সময়:</h5>
+                                <div class="row">
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="hourUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="hour" type="text" name="hour" id="hourSpan" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="hourDownFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="minuteUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="minute" type="text" name="minute" id="minuteSpan" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="minuteDownFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-center pr-1 pl-1">
+                                        <span class="border border-success rounded-circle" onclick="ampmUpFunc()">
+                                            <i class="fas fa-angle-up text-success upBt"></i>
+                                        </span>
+                                        <br>
+                                        <input asp-for="am_pm" type="text" name="am_pm" id="ampmSpan" class="digitBox text-light pt-1 pb-1 pr-4 pl-4 " readonly>
+                                        <br>
+                                        <span class="border border-success rounded-circle" onclick="ampmUpFunc()">
+                                            <i class="fas fa-angle-down text-success downBt"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-lg-12 text-center">
+                                        <input type="submit" name="filterDate" class="btn btn-outline-success btn-sm" value="ফিল্টার">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-right">
+                                        <i class="fas fa-undo text-success" onclick="clearTime()"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-1"></div>
+                <!--Post View-->
+                <div class="col-lg-8 pr-4 pl-4">
+
+                    @foreach (var item in Model.PostList)
+                    {
+                        @if ( item.Post_Time.Count == 0 )
+                            continue;
+
+                        <div class="row postView">
+                            <div class="col-12">
+                                <h6>  @item.title  </h6>
+
+                                <p class="text-muted postDate">
+                                    সাক্ষাতের সময়:
+                                @foreach (var time in item.Post_Time)
+                                {
+                                     @time.time.ToString("dd MMM, yyy hh:mm tt ")                                   
+                                }
+                                </p>
+
+                                @if (item.description.Length < 220)
+                                {
+                                    <p class="text-justify postDescription"> @item.description </p>
+                                }
+                                else
+                                {
+                                    String description = item.description.Substring(0, 220);
+                                    description = description + "...";
+                                    <p class="text-justify postDescription"> @description </p>
+                                }
+
+
+                                <hr>
+                                <div class="row mt-0">
+                                    <div class="col-8">
+                                        <p class="postCategory">ধরণ: @item.Category</p>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        @*<input type="button" name="" class="button" value="VIEW" asp-controller="Posts" asp-action="ViewSpecialistPost" asp-route-id=@item.post_id  onclick="location.href='post_view.html';">*@
+                                        @*<input type="button" name="" class="button" value="VIEW"> <a asp-controller="Specialists" asp-action="ViewSpecialistPost" asp-route-id=@item.post_id> VIEW </a>*@
+                                        <button type="button" name="" value="" class="button"> <a asp-controller="Specialists" asp-action="ViewSpecialistPost" asp-route-id=@item.post_id asp-route-s_id=@Model.Specialist.specialist_id>দেখুন</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    }else if( Model.Specialist.is_approved == 2)
+    {
+        <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>আপনার অনুরোধ বাতিল করা হয়েছে|</h1>
+                        <h4>যত তাড়াতাড়ি সম্ভব আমাদের প্রশাসকদের সাথে যোগাযোগ করুন। প্রশাসনের যোগাযোগ নং: +8801531210477</h4>
+                    </div>
+                </div>
+            </div>
+    }
+    else
+    {
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>আমাদের ওয়েবসাইটে সাইন আপ করার জন্য আপনাকে ধন্যবাদ। দয়া করে আমাদের প্রশাসকদের একজন যাচাই করার জন্য অপেক্ষা করুন।</h1>
+                        <h4>সফলভাবে যাচাই হয়ে গেলে আপনি আমাদের ওয়েবসাইটটি ব্যবহার করতে সক্ষম হবেন। আমরা শীঘ্রই আপনার কাছে ফিরে আসব।</h4>
+                    </div>
+                </div>
+            </div>
+        }
+    
+
+
+    <!--  JavaScript -->
+    <script src="~/Bootstrap/js/jquery.min.js">
+    </script>
+    <script src="~/Bootstrap/js/popper.min.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+    <!--Bottom Navigation-->
+    <nav class="nav-bottom" id="bottom-nav">
+        <a data-toggle="modal" href="#exampleModalDate" class="nav__link" id="bottom-information-link">
+            <i class="far fa-calendar-alt"></i>
+            <span class="nav__text">সাক্ষাতের তারিখ</span>
+        </a>
+        <a data-toggle="modal" href="#exampleModalTime" class="nav__link" id="bottom-introduction-link">
+            <i class="fas fa-history"></i>
+            <span class="nav__text">সাক্ষাতের সময়</span>
+        </a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@model Tele_Farming.Models.Post
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/css/ViewPost/view_post_page.css">
+    <link rel="stylesheet" href="~/css/ViewPost/pending.css">
+    <link rel="stylesheet" href="~/css/ViewPost/nav.css">
+
+</head>
+<body>
+
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="home.php"><img src="~/images/ViewPost/large.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+
+                    <li>
+                        <a class="nav-link" asp-controller="Farmers" asp-action="Post" asp-route-id=@Model.farmer_id><i class="fas fa-newspaper"></i> হোম</a>
+                    </li>
+                    <li>
+                        <a class="nav-link profile_image_nav" asp-controller="Farmers" asp-action="ProfilePage" asp-route-id=@Model.farmer_id><i class="fas fa-user"></i> @Model.Farmer.name </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-controller="Farmers" asp-action="SignOutUser" asp-route-id=@Model.farmer_id><i class="fas fa-sign-out-alt"></i> প্রস্থান</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+
+    <br>
+    <div class="container">
+
+
+        <div class="row">
+            <div class="title">
+                <h3> @Model.title </h3>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="description">
+                <p>
+                    @Model.description
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <p>প্রদত্ত সাক্ষাতের সময়:</p>
+            @foreach (var t in Model.Post_Time)
+            {
+                <div class="time">
+                    <div class="btn"> @t.time.ToString("dd MMM, yyy hh:mm tt") </div>
+                </div>
+            }
+        </div>
+
+
+        <div class="row row_image">
+            <p>প্রদত্ত ছবিসমূহ:</p>
+            @foreach (var t in Model.Post_Images)
+            {
+                <div class="image"><img src="~/Image/@t.image_path" alt=""> </div>
+            }
+        </div>
+
+
+
+        <div class="row">
+            <div class="line"></div>
+        </div>
+
+
+
+        <div class="row s_row">
+            <div class="specialist_response">
+                <h3>বিশেষজ্ঞের প্রত্যুত্তর</h3>
+                <div class="still_pending">
+                    <p>এখনো অপেক্ষমান</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="line"></div>
+        </div>
+
+        <div class="row s_row">
+            <div class="ok_button">
+                <button class="btn"> <a asp-controller="Farmers" asp-action="Post" asp-route-id=@Model.farmer_id>ঠিক আছে</a> </button>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+</body>
+</html>

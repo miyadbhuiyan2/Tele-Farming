@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="~/css/Select Account Type Page/select_account_type_page.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="part-1" style="background-image: url('../images/Select Account Type Page/image.jpg');" >
+            
+        </div>
+
+        <div class="part-2">
+
+            <div class="text">
+                <p class="welcome_text">Welcome</p>
+                <p class="to_text">to</p>
+                <p class="tele_farming_text">Tele-Farming</p>
+            </div>
+
+            <div class="select_account_type">
+                <p>Select Account Type</p>
+            </div>
+
+            <div class="triangle_image">
+                <img src="~/images/Select Account Type Page/triangle.jpg" alt="">
+            </div>
+
+            <div class="account_choose">
+
+                <div class="farmer_button">
+                    <a  asp-controller="Farmers" asp-action="SignIn" ><p>Farmer</p></a>
+                </div>
+
+                <div class="specialist_button">
+                    <a  asp-controller="Specialists" asp-action="SignIn" ><p>Specialist</p></a>
+                </div>
+
+                <div class="specialist_button">
+                    <a  asp-controller="Agents" asp-action="SignIn" ><p>Agent</p></a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</body>
+</html>

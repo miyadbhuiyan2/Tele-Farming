@@ -1,0 +1,246 @@
+﻿@model Tele_Farming.Models.Combined_Read_Write_Posts
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Request</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/admin_home_specialist_style.css">
+    <script src="https://kit.fontawesome.com/15fc770d9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!---Navigation-->
+    <div id="parentNav">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div id="main">
+                <span onclick="openNav()" class="fas fa-bars"></span>
+                <a class="navbar-brand" href="#"><img src="~/images/large.png"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandView">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExpandView">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> MIYAD</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> SIGN OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!---End Navigation-->
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/Admins/AdminHome/" class="menuItem active"><i class="fas fa-home"></i><span class="mr-2"></span> Home</a>
+        <a href="/Admins/AdminJoinRequests/" class="menuItem"><i class="fas fa-user-plus"></i><span class="mr-2"></span> Join Request</a>
+        <a href="/Admins/AdminComplains/" class="menuItem"><i class="fas fa-inbox"></i><span class="mr-2"></span> Complain</a>
+    </div>
+    <!--End Side Navigation-->
+    <div id="subNav">
+        <div class="navbar">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-2 col-lg-4"></div>
+                    <div class="col-8 col-lg-4">
+                        <form asp-controller="Admins" asp-action="AdminHomeDetailsPage" method="get" class="w-100">
+                            <div class="input-group mt-2 mb-2">
+                                <input type="text" class="form-control" placeholder="Search Here" name="SearchString" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2 col-lg-4"></div>
+                </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--SideBar--->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "310px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                @if (Model.ViewType == 1)
+                {
+                    @foreach (var item in Model.SpecialistList)
+                    { 
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Image/@item.profile_picture_path" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-9">
+                                        <h6 class="card-title">@item.name</h6>
+                                        <p class="card-subtitle">
+                                            ID: @item.specialist_id
+                                        </p>
+                                        <hr>
+                                        <div class="row mt-0">
+                                            <div class="col-7">
+                                                <p class="joinCategory">Rank: @item.Category Specialist</p>
+                                            </div>
+                                            <div class="col-5 text-right">
+                                                <input type="button" name="" class="button" value="VIEW" onclick="location.href = '/Admins/AdminHomeUserView?id=@item.specialist_id&userType=Specialist';">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                      
+                    }
+                }
+                else if (Model.ViewType == 2)
+                {
+                    @foreach (var item in Model.FarmerList)
+                    {
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Image/@item.profile_picture_path" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-9">
+                                        <h6 class="card-title">@item.name</h6>
+                                        <p class="card-subtitle">
+                                            ID: @item.farmer_id
+                                        </p>
+                                        <hr>
+                                        <div class="row mt-0">
+                                            <div class="col-7">
+                                                <p class="joinCategory">Rank: Farmer</p>
+                                            </div>
+                                            <div class="col-5 text-right">
+                                                <input type="button" name="" class="button" value="VIEW" onclick="location.href = '/Admins/AdminHomeUserView?id=@item.farmer_id&userType=Farmer';">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                }
+                else if (Model.ViewType == 3)
+                {
+                    @foreach (var item in Model.AgentList)
+                    {
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Image/@item.profile_picture_path" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-9">
+                                        <h6 class="card-title">@item.name</h6>
+                                        <p class="card-subtitle">
+                                            ID: @item.agent_id
+                                        </p>
+                                        <hr>
+                                        <div class="row mt-0">
+                                            <div class="col-7">
+                                                <p class="joinCategory">Rank: Agent</p>
+                                            </div>
+                                            <div class="col-5 text-right">
+                                                <input type="button" name="" class="button" value="VIEW" onclick="location.href = '/Admins/AdminHomeUserView?id=@item.agent_id&userType=Agent';">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    @foreach (var item in Model.PostList)
+                    {
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="card-title">@item.title</h6>
+                            <p class="card-subtitle">@item.post_time</p>
+                            <p class="postDescription mt-2">
+                                @if (item.is_accepted == "NO")
+                                {
+                                    <i class="fas fa-check-circle text-success mb-1" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-clock text-warning mb-1" aria-hidden="true"></i>
+                                }
+                                Accpted<br>
+                                @if (item.is_accepted == "NO")
+                                {
+                                    <i class="fas fa-check-circle text-success mb-1" aria-hidden="true"></i>
+                                }
+                                else if (item.is_accepted == "NO")
+                                {
+                                    <i class="fas fa-clock text-warning mb-1" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-times-circle text-danger mb-1" aria-hidden="true"></i>
+                                }
+                                Meeting<br>
+                                @if (item.is_accepted == "NO")
+                                {
+                                    <i class="fas fa-check-circle text-success" aria-hidden="true"></i>
+                                }
+                                else if (item.is_accepted == "NO")
+                                {
+                                    <i class="fas fa-clock text-warning" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
+                                }
+                                Payment
+                            </p>
+                            <hr>
+                            <div class="row mt-0">
+                                <div class="col-7">
+                                    <p class="joinCategory">Category: @item.Category</p>
+                                </div>
+                                <div class="col-5 text-right">
+                                    <input type="button" name="" class="button" value="VIEW" onclick="location.href = '/Admins/AdminHomePostView/@item.post_id';">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>   
+                    }
+}
+            </div>
+            <div class="col-lg-3"></div>
+            </div>
+            </div>
+            <!--  JavaScript -->
+            <script src="~/Bootstrap/js/jquery.min.js"></script>
+            <script src="~/Bootstrap/js/popper.min.js"></script>
+            <script src="~/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
